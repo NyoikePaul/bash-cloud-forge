@@ -1,74 +1,72 @@
-# 🔥 Bash Cloud Forge Pro – Now Available!
+# 🔥 Bash Cloud Forge
 
-**Brand new (launched Feb 26 2026)** – Pure Bash toolkit for Kenyan freelancers & agencies.
+**Pure Bash toolkit for lightning-fast cloud server provisioning, hardening, monitoring & API deployments.**
 
-**Free version** = personal use only  
-**Pro subscription (KSh 1,099/mo)** = Commercial license + extra templates + priority support + monthly updates
+Perfect for **DigitalOcean + AWS + Telegram** alerts. Built for Kenyan freelancers, DevOps engineers & full-stack agencies.
 
-[Get Pro Now →](https://your-carrd-link.carrd.co)
-
-Perfect for DigitalOcean + AWS + Telegram alerts. Provision + harden + deploy + backup in minutes.# 🛠️ Bash-Cloud-Forge 2.0
-**Enterprise-Grade Cloud Provisioning & Monitoring Framework**
-
-[![Bash Expert CI](https://github.com/nyoikepaul/bash-cloud-forge/actions/workflows/bash-ci.yml/badge.svg)](https://github.com/nyoikepaul/bash-cloud-forge/actions)
-![License](https://img.shields.io/github/license/nyoikepaul/bash-cloud-forge)
-![Bash Version](https://img.shields.io/badge/bash-4.4+-blue.svg)
-
-Bash-Cloud-Forge is a high-performance, modular toolkit designed for DevOps engineers who demand speed without sacrificing security. Built on **Strict Bash Principles**, it provides a dependency-free way to manage cloud infrastructure.
+![Bash](https://img.shields.io/badge/Bash-4.4+-black?style=flat&logo=gnubash)
+![License](https://img.shields.io/github/license/NyoikePaul/bash-cloud-forge)
+[![CI](https://github.com/NyoikePaul/bash-cloud-forge/actions/workflows/bash-ci.yml/badge.svg)](https://github.com/NyoikePaul/bash-cloud-forge/actions)
+![Stars](https://img.shields.io/github/stars/NyoikePaul/bash-cloud-forge)
+![Last Commit](https://img.shields.io/github/last-commit/NyoikePaul/bash-cloud-forge)
 
 ---
 
-## 🏗️ Architecture Overview
+## ✨ Features
 
-The framework follows a modular "Core & Library" pattern:
-* **`forge.sh`**: The unified CLI entry point.
-* **`lib/`**: Reusable modules for logging, environment validation, and core logic.
-* **`scripts/`**: Atomic task scripts called by the orchestrator.
-* **`.github/workflows/`**: Continuous Integration via ShellCheck and shfmt.
-
----
-
-## 🛡️ Enterprise Safety Features
-
-This toolkit implements **Strict Mode** execution:
-* **Fail-Fast (`set -e`)**: Scripts terminate immediately on any command failure.
-* **Undefined Variable Protection (`set -u`)**: Prevents execution if a variable is missing.
-* **Pipeline Integrity (`set -o pipefail`)**: Ensures errors in piped commands are caught.
-* **Structured Logging**: Timestamped, color-coded output for observability.
+- ⚡ **Zero dependencies** — Pure Bash (works on almost any Linux server)
+- 🔒 **Strict Mode** + Enterprise safety (`set -euo pipefail`)
+- 🌩️ DigitalOcean droplet provisioning & hardening
+- 📡 AWS support (EC2, security groups, etc.)
+- 📲 Telegram notifications & monitoring
+- 📦 One-command deploy for APIs & web apps
+- 🔄 Automated backups with retention policy
+- 🧪 Built-in testing & CI with ShellCheck + shfmt
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### 1. Prerequisites
-Ensure your `.env` file is configured based on `.env.example`.
+### 1. Clone & Setup
+``bash
+git clone https://github.com/NyoikePaul/bash-cloud-forge.git
+cd bash-cloud-forge
+cp .env.example .env
+# Edit .env with your DO_TOKEN, TELEGRAM_BOT_TOKEN, etc.
+chmod +x forge.sh
 
-### 2. Usage
-```bash
-# Provision a new instance
-./forge.sh provision my-web-server
+2. Basic Commandsbash
 
-# Deploy an application
+# Provision a new hardened server
+./forge.sh provision web-server --region nairobi
+
+# Deploy your application
 ./forge.sh deploy production
 
-# Run the Telegram Watchdog test
-# Backup application data
-./forge.sh backup /var/www/flask-api
-* **Automated Backups:** Timestamped archives with configurable retention.
+# Run full system backup
+./forge.sh backup /var/www/myapp
+
+# Test Telegram alerts
 ./forge.sh test
-* **Automated Backups:** Timestamped archives with configurable retention.
-\```
 
----
+# Show help
+./forge.sh help
 
-## 🛠️ Development & CI/CD
+ Project Structure
 
-To maintain code quality, this repo uses:
-1.  **ShellCheck**: Static analysis to find bugs and bad practices.
-2.  **shfmt**: Enforces a consistent Google-style shell format.
+bash-cloud-forge/
+├── forge.sh          # Main CLI entrypoint
+├── lib/              # Core reusable functions
+├── scripts/          # Atomic task scripts
+├── examples/         # Usage examples
+├── .github/workflows # CI: ShellCheck + shfmt
+└── .env.example
 
-Run local linting:
-\```bash
+ Pro VersionFree = Personal & learning use
+Pro (KSh 1,099/mo) = Commercial license + premium templates + priority supportGet Pro → DevelopmentRun linting locally:bash
+
+# ShellCheck + formatting check
 find . -type f -name "*.sh" -exec shellcheck {} +
-\```
+
+Made with  for Kenyan developers & hustlersStar the repo if it helps you ship faster! 
 
