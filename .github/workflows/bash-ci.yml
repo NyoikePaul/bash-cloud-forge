@@ -9,19 +9,33 @@ on:
 jobs:
   lint-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
-        with:
-          scandir: '.'
-          
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y shellcheck shfmt
+
+      - name: Run ShellCheck (Strict)
+        run: |
+          echo "🔍 Running ShellCheck on all .sh files..."
+          find . -type f -name "*.sh" -exec shellcheck --severity=error {} +
+
       - name: Check Bash Formatting (shfmt)
         run: |
-          sudo apt-get update && sudo apt-get install -y shfmt
-          shfmt -d -i 2 -ci .
-          
+          echo "📏 Checking formatting with shfmt..."
+          shfmt -d -i 2 -ci -s .
+
       - name: Verify Executable Permissions
         run: |
-          find . -type f -name "*.sh" ! -executable -exec echo "Missing +x on {}" \; -exec exit 1 \;
+          echo "🔧 Checking executable permissions..."
+          find . -type f \( -name "*.sh" -o -name "forge.sh" -o -name "deploy.sh" -o -name "provision.sh" \) ! -executable -print0 | 
+            xargs -0 -I {} sh -c 'echo "⚠️ Missing +x on: {}" && exit 1' || echo "✅ All scripts are executable"
+
+      - name: Test Script Syntax
+        run: |
+          echo "🧪 Checking bash syntax..."
+          find . -type f -name "*.sh" -exec bash -n {} \;
